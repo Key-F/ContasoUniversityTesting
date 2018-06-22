@@ -60,6 +60,7 @@
     <Compile Include="InstructotsContent.cs" />
     <Compile Include="LogInContent.cs" />
     <Compile Include="RegisterContent.cs" />
+    <Compile Include="StudentAdd.cs" />
     <Compile Include="StudentsContent.cs" />
     <Compile Include="Visibility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
