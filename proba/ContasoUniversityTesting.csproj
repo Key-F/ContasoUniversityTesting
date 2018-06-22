@@ -58,6 +58,7 @@
     <Compile Include="CUAndHomeContent.cs" />
     <Compile Include="DepartmentsContent.cs" />
     <Compile Include="InstructotsContent.cs" />
+    <Compile Include="LogInContent.cs" />
     <Compile Include="RegisterContent.cs" />
     <Compile Include="StudentsContent.cs" />
     <Compile Include="Visibility.cs" />
