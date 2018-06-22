@@ -1,0 +1,17 @@
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\proba.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\proba.pdb
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\WebDriver.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\bin\Debug\WebDriver.xml
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\obj\Debug\proba.csprojResolveAssemblyReference.cache
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\obj\Debug\proba.dll
+c:\users\keyf\documents\visual studio 2017\Projects\proba\proba\obj\Debug\proba.pdb
