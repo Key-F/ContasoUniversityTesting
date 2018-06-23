@@ -96,5 +96,64 @@ namespace proba
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
         }
+
+        [TestMethod]
+        public void StudentDetailsTest() // Коррекность данных в Details
+        {
+            IWebDriver Dr;
+            Dr = new InternetExplorerDriver();
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");
+            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового ученика
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
+            Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
+            Thread.Sleep(1000);
+
+            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName) // Если это наш тестовый ученик            
+                Dr.FindElement(By.CssSelector("tbody tr td:nth-child(4) a:nth-child(2)")).Click(); // Нажимаем Details
+
+            Assert.IsTrue(Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(2)")).Text == testLastName); // Сверяем фамилию
+            Assert.IsTrue(Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(4)")).Text == testFirstName); // Сверяем Имя
+            string Date = Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(6)")).Text; // Ищем нужную дату
+            DateTime tableDate = DateTime.ParseExact(Date, "yyyy-MM-dd", new CultureInfo("en-US"));
+            Assert.IsTrue(tableDate.ToString("M-d-yyyy") == testDate); // Сверяем дату
+            Dr.FindElement(By.CssSelector(".container.body-content a:nth-child(2)")).Click(); // Back to List
+            Thread.Sleep(1000);
+            
+            Dr.FindElement(By.CssSelector(".table a:nth-child(3)")).Click(); // Чистим за собой
+            Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
+            Dr.Quit();
+        }
+
+        [TestMethod]
+        public void StudentDeleteTest() // Коррекность данных в Details
+        {
+            IWebDriver Dr;
+            Dr = new InternetExplorerDriver();
+            bool Boo; // Индикатор отсутствия
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");
+            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового ученика
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
+            Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
+            Thread.Sleep(1000);
+
+            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName) // Если это наш тестовый ученик   
+            {
+                Dr.FindElement(By.CssSelector("tbody tr td:nth-child(4) a:nth-child(3)")).Click(); // Нажимаем Delete
+                Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления 
+            }
+            try
+            {
+                Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")); // Есть ли записи
+                Boo = false;
+            }
+            catch (NoSuchElementException e)
+            {
+                Boo = true;
+            }
+            Assert.IsTrue((Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text != testFirstName) || Boo); // Или это не наш ученик или учеников больше нет
+            Dr.Quit();
+        }
     }
 }
