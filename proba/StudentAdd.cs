@@ -20,7 +20,7 @@ namespace proba
         
 
         [TestMethod]
-        public void StudentAddTest() // На странице Log in присутствует баннер "Log In"
+        public void StudentAddTest() // Добавление студента
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();

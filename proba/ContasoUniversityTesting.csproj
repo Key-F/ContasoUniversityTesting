@@ -54,7 +54,9 @@
   <ItemGroup>
     <Compile Include="AboutContent.cs" />
     <Compile Include="ContactContent.cs" />
+    <Compile Include="CourseAdd.cs" />
     <Compile Include="CoursesContent.cs" />
+    <Compile Include="CoursesWork.cs" />
     <Compile Include="CUAndHomeContent.cs" />
     <Compile Include="DepartmentsContent.cs" />
     <Compile Include="InstructotsContent.cs" />
