@@ -19,7 +19,7 @@ namespace proba
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");
-           // string testName = Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text;
+            // string testName = Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text;
             Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового ученика
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
@@ -54,5 +54,30 @@ namespace proba
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
         }
+
+        [TestMethod]
+        public void SearchNonxistentStudent() // В поле поиска вводим несуществующего
+        {
+            IWebDriver Dr;
+            bool Boo; // Индикатор наличия записи
+            Dr = new InternetExplorerDriver();
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");
+            Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + "NonexistendAddition" + Keys.Enter); // Поиск несуществующего
+            Thread.Sleep(1000);
+            //string ff = Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text;
+            try
+            {
+                Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")); // Есть ли записи
+                Boo = true;
+            }
+            catch (NoSuchElementException e)
+            {
+                Boo =  false;
+            }
+            Assert.IsFalse(Boo);                            
+            Dr.Quit();
+        }
+
+        
     }
 }
