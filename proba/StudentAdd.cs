@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System.Threading;
+using System.Globalization;
 
 namespace proba
 {
@@ -12,6 +13,11 @@ namespace proba
         string testFirstName = "1TestFirst"; // Значения, чтобы тестовый ученик оказался наверу списка
         string testLastName = "1TestLast";
         string testDate = "1-11-2018"; // M-d-yyyy
+
+        string formatTable = "yyyy-MM-dd"; // Формат даты отображающийся в таблице учеников
+        string formatEnter = "M-d-yyyy"; // Формат даты, который требуется при создании ученика
+        DateTime parsedDateTimeTable;
+        DateTime parsedDateTimeEnter;
 
         [TestMethod]
         public void StudentAddTest() // На странице Log in присутствует баннер "Log In"
@@ -28,6 +34,16 @@ namespace proba
             //Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + Keys.Enter); // Поиск по имени
             // Thread.Sleep(1000);         
             Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName); // Ищем созданного по имени на странице
+            string enrollmentDate = Dr.FindElement(By.CssSelector("tbody tr td:nth-child(3)")).Text; // Ищем дату зачисления тестового студента на странице
+            DateTime.TryParseExact(enrollmentDate, formatTable, new CultureInfo("en-US"),
+                                          DateTimeStyles.None, out parsedDateTimeTable);
+
+            DateTime.TryParseExact(testDate, formatEnter, new CultureInfo("en-US"),
+                                          DateTimeStyles.None, out parsedDateTimeEnter);
+            Assert.IsTrue(parsedDateTimeEnter == parsedDateTimeTable); // Проверка корректнности даты
+
+            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr td:nth-child(1)")).Text == testLastName); // Проверка корректности фамилии
+
             Dr.FindElement(By.CssSelector(".table a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();

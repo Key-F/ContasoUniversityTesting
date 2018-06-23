@@ -63,6 +63,7 @@
     <Compile Include="StudentAdd.cs" />
     <Compile Include="StudentsContent.cs" />
     <Compile Include="StudentSearch.cs" />
+    <Compile Include="StudentsWork.cs" />
     <Compile Include="Visibility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Acessibility.cs" />

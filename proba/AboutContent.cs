@@ -48,8 +48,7 @@ namespace proba
             for (int i = 1; i < ElementsOfTable.Count; i++)
             {
                 string[] temp = ElementsOfTable[i].Text.Split(new char[] { ' ' }); // Делим на дату и на количество студентов
-                Assert.IsTrue(DateTime.TryParseExact(temp[0], formats, new CultureInfo("en-US"),
-                                           DateTimeStyles.None, out parsedDateTime)); // Первая часть соответсвует формату даты
+                Assert.IsNotNull(parsedDateTime = DateTime.ParseExact(temp[0], "M/d/yyyy", new CultureInfo("en-US"))); // Первая часть соответсвует формату даты
                 Assert.IsNotNull(Convert.ToInt32(temp[1])); // Вторая часть является числом
             }
 
