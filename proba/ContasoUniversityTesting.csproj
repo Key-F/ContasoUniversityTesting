@@ -58,6 +58,7 @@
     <Compile Include="CoursesContent.cs" />
     <Compile Include="CoursesWork.cs" />
     <Compile Include="CUAndHomeContent.cs" />
+    <Compile Include="DepartmentAdd.cs" />
     <Compile Include="DepartmentsContent.cs" />
     <Compile Include="InstructorAdd.cs" />
     <Compile Include="InstructotsContent.cs" />
