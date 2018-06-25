@@ -20,7 +20,7 @@ namespace proba
         public void StudentLastNameEditTest() // Изменяем имя ученика
         {
             IWebDriver Dr;
-            Dr = new InternetExplorerDriver();
+            Dr = new InternetExplorerDriver();            
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");        
             Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового ученика
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
