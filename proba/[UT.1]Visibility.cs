@@ -8,7 +8,8 @@ namespace proba
 {
     [TestClass]
     public class Visibility
-    {
+    { 
+        /*
         [TestMethod]
         public void TestMethod1()
         {
@@ -30,8 +31,8 @@ namespace proba
              //Assert.IsNotNull(Dr.FindElement(By.CssSelector(".navbar-nav.navbar-right")).Displayed);
             Assert.IsNotNull(Dr.FindElement(By.CssSelector(".navbar-nav.navbar-right")).Displayed);
             Dr.Quit();
-        }
-
+        } 
+        */
         [TestMethod]
         public void ContosoUniversityVisibility()
         {
@@ -47,8 +48,7 @@ namespace proba
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
-            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
-            //Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(4) a")).Click();
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");           
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(4) a")).Displayed);
             Dr.Quit();
         }
@@ -58,8 +58,7 @@ namespace proba
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
-            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
-           // Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(3) a")).Click();
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");           
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(3) a")).Displayed);
             Dr.Quit();
         }
@@ -69,8 +68,7 @@ namespace proba
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
-            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
-            //Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(2) a")).Click();
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");            
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(3) a")).Displayed);
             Dr.Quit();
         }
@@ -82,8 +80,7 @@ namespace proba
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
            
-            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(1) a")).Click();
+            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список            
            Assert.IsTrue(Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(1) a")).Displayed);
             Dr.Quit();
         }
@@ -95,8 +92,7 @@ namespace proba
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
 
-            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(1) a")).Click();
+            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список            
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(2) a")).Displayed);
             Dr.Quit();
         }
@@ -108,8 +104,7 @@ namespace proba
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
 
-            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(2) a")).Click();
+            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список            
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(3) a")).Displayed);
             Dr.Quit();
         }
@@ -121,8 +116,7 @@ namespace proba
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
 
-            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(2) a")).Click();
+            Dr.FindElement(By.CssSelector(".nav.navbar-nav li:nth-last-child(1) a")).Click(); // Открыть всплывающий список           
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(4) a")).Displayed);
             Dr.Quit();
         }
@@ -133,9 +127,7 @@ namespace proba
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
-
-           // Dr.FindElement(By.CssSelector(".nav.navbar-nav.navbar-right li:nth-last-child(2) a ")).Click(); 
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(1) a")).Click();
+           
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".nav.navbar-nav.navbar-right li:nth-last-child(2) a")).Displayed);
             Dr.Quit();
         }
@@ -146,9 +138,7 @@ namespace proba
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/");
-
-            // Dr.FindElement(By.CssSelector(".nav.navbar-nav.navbar-right li:nth-last-child(2) a ")).Click(); 
-            //Dr.FindElement(By.CssSelector(".dropdown-menu li:nth-last-child(1) a")).Click();
+          
             Assert.IsTrue(Dr.FindElement(By.CssSelector(".nav.navbar-nav.navbar-right li:nth-last-child(1) a")).Displayed);
             Dr.Quit();
         }

@@ -70,9 +70,9 @@
     <Compile Include="StudentsContent.cs" />
     <Compile Include="StudentSearch.cs" />
     <Compile Include="StudentsWork.cs" />
-    <Compile Include="Visibility.cs" />
+    <Compile Include="[UT.1]Visibility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Acessibility.cs" />
+    <Compile Include="[UT.2]Acessibility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
