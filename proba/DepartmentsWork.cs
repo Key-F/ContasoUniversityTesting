@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.IE;
 using System.Threading;
+using System.Globalization;
 
 namespace proba
 {
@@ -45,37 +46,40 @@ namespace proba
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
         }
-        /*
+        
         [TestMethod]
-        public void CourseDepartmentEditTest() // Изменяем Department
+        public void DepartmentBudgetEditTest() // Изменяем Budget
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
-            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Courses");
-            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать новый курс
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testNumber); // Заполняем поле Number
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testTitle); // Заполняем поле Title         
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(5) input")).SendKeys(testCredits); // Заполняем поле Credits    
-            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем факультет  
+            string newBudget = "1500";
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Departments");
+            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового факультета
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testName); // Заполняем поле Name
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testBudget); // Заполняем поле Budget           
+            Dr.FindElement(By.CssSelector("input#StartDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Start Date        
+            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем преподавателя            
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
             Thread.Sleep(1000);
 
-            if (Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text == testNumber) // Если это наш тестовый курс
+            if (Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text == testName) // Если это наш тестовый факультет
             {
                 Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(5) a")).Click(); // Нажимаем Edit
-                Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Меняем факультет   
-                testDepartment = Dr.FindElement(By.TagName("select")).Text; // Тут весь список факультетов   
-                Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
+                Dr.FindElement(By.Id("Budget")).Clear();
+                Dr.FindElement(By.Id("Budget")).SendKeys(newBudget + Keys.Enter); // Изменяем поле Budget            
             }
-            string[] tempDep = testDepartment.Split(new char[] { ' ' }); // Добывем нужный факультет             
-            Thread.Sleep(1000);
-            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(4)")).Text == tempDep[5]); // Ищем Department на странице
+            Thread.Sleep(2000);
+            // Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + Keys.Enter); // Поиск по имени
+            Double dTestBudget = double.Parse(newBudget, new CultureInfo("en-us"));
+            Double budgetInTable = double.Parse(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(2)")).Text, new CultureInfo("en-us"));
+            
+            Assert.IsTrue(dTestBudget == budgetInTable); // Ищем созданного по Budget на странице, конвертируем, тк отображается дробная часть
 
             Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
         }
-
+        /*
         [TestMethod]
         public void CourseCreditsEditTest() // Изменяем Credits
         {
