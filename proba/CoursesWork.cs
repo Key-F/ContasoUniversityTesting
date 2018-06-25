@@ -130,7 +130,7 @@ namespace proba
                     Err = true;
                 }
             // Страница недоступна, нет возможности протестировать
-
+            Thread.Sleep(2000);
             Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
@@ -146,7 +146,7 @@ namespace proba
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Courses");
             Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать новый курс
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testNumber); // Заполняем поле Number
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testTitle); // Заполняем поле Title         
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testTitle+ "Add"); // Заполняем поле Title, добавка для отличия     
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(5) input")).SendKeys(testCredits); // Заполняем поле Credits    
             Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем факультет  
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
@@ -167,10 +167,9 @@ namespace proba
                 Boo = true;
             }
             Thread.Sleep(1000);
-            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(2)")).Text != (testTitle) || Boo); // Ищем Title не равен нашему или курсов не осталось
+            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(2)")).Text != (testTitle + "Add") || Boo); // Ищем Title не равен нашему или курсов не осталось
 
-            Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
-            Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
+                      
             Dr.Quit();
         }
     }

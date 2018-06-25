@@ -58,7 +58,8 @@ namespace proba
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testName); // Заполняем поле Name
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testBudget); // Заполняем поле Budget           
             Dr.FindElement(By.CssSelector("input#StartDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Start Date        
-            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем преподавателя            
+            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем преподавателя
+           
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
             Thread.Sleep(1000);
 
@@ -74,6 +75,8 @@ namespace proba
             Double budgetInTable = double.Parse(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(2)")).Text, new CultureInfo("en-us"));
             
             Assert.IsTrue(dTestBudget == budgetInTable); // Ищем созданного по Budget на странице, конвертируем, тк отображается дробная часть
+
+
 
             Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
@@ -144,30 +147,75 @@ namespace proba
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
             Dr.Quit();
         }
-        /*
+
+        [TestMethod]
+        public void CourseDetailsTest() // Коррекность данных в Details
+        {
+            IWebDriver Dr;
+            Dr = new InternetExplorerDriver();
+          
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Departments");
+            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового факультета
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testName); // Заполняем поле Name
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testBudget); // Заполняем поле Budget           
+            Dr.FindElement(By.CssSelector("input#StartDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Start Date        
+            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем преподавателя
+            string InstrID = Dr.FindElement(By.TagName("select")).Text; // Тут весь список преподавателей          
+            string[] tempIns = InstrID.Split(new char[] { ' ' }); // Добывем нужного преподавателя
+            Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
+            Thread.Sleep(1000);
+
+            if (Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text == testName) // Если это наш тестовый факультет      
+                Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(2)")).Click(); // Нажимаем Details
+
+
+            Double dTestBudget = double.Parse(testBudget, new CultureInfo("en-us"));
+            Double budgetInTable = double.Parse(Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(4)")).Text, new CultureInfo("en-us"));
+
+            string startDate = Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(6)")).Text; // Ищем дату на странице
+            parsedDateTimeTable = DateTime.ParseExact(startDate, formatTable, new CultureInfo("en-US"));
+
+            Assert.IsTrue(Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(2)")).Text == testName); // Сверяем имя
+            Assert.IsTrue(dTestBudget == budgetInTable); // Сверяем Бюджет
+            //string Date = Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(6)")).Text; // Ищем нужную дату
+            //DateTime tableDate = DateTime.ParseExact(Date, "yyyy-MM-dd", new CultureInfo("en-US"));
+            Assert.IsTrue(parsedDateTimeTable.ToString(formatEnter) == testDate); ; // Сверяем дату
+
+            Assert.IsTrue(Dr.FindElement(By.CssSelector(".dl-horizontal dd:nth-child(8)")).Text.Contains(tempIns[4])); // Ищем созданного по Администратору
+
+            Dr.FindElement(By.CssSelector(".container.body-content a:nth-child(2)")).Click(); // Back to List
+            Thread.Sleep(1000);
+
+            Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
+            Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
+            Dr.Quit();
+        }
+        
         [TestMethod]
         public void CourseDeleteTest() // Коррекность удаления курса
         {
             IWebDriver Dr;
             Dr = new InternetExplorerDriver();
-            bool Boo; // Индикатор отсутствия
-            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Courses");
-            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать новый курс
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testNumber); // Заполняем поле Number
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testTitle); // Заполняем поле Title         
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(5) input")).SendKeys(testCredits); // Заполняем поле Credits    
-            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем факультет  
+
+            bool Boo; // Флаг отсутствия
+            Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Departments");
+            Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового факультета
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testName); // Заполняем поле Name
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testBudget); // Заполняем поле Budget           
+            Dr.FindElement(By.CssSelector("input#StartDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Start Date        
+            Dr.FindElement(By.TagName("select")).SendKeys(Keys.ArrowDown); // Выбираем преподавателя            
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждаем
             Thread.Sleep(1000);
 
-            if (Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text == testNumber) // Если это наш тестовый курс  
+            if (Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text == testName) // Если это наш тестовый факультет    
             {
-                Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(5) a:nth-last-child(1)")).Click(); // Нажимаем Delete 
-                Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления
+                Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Нажимаем Delete
+                Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления 
             }
+            
             try
             {
-                Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")); // Есть ли записи
+                Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")); // Есть ли записи
                 Boo = false;
             }
             catch (NoSuchElementException e)
@@ -175,11 +223,10 @@ namespace proba
                 Boo = true;
             }
             Thread.Sleep(1000);
-            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(2)")).Text != (testTitle) || Boo); // Ищем Title не равен нашему или курсов не осталось
+            Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr:nth-last-child(1) td:nth-child(1)")).Text != (testName) || Boo); // Ищем Name не равен нашему или курсов не осталось
 
-            Dr.FindElement(By.CssSelector(".table tr:nth-last-child(1) a:nth-child(3)")).Click(); // Чистим за собой
-            Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
+                     
             Dr.Quit(); 
-        }*/
+        }
     }
 }

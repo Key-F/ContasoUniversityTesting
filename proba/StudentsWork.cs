@@ -28,13 +28,13 @@ namespace proba
             Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
             Thread.Sleep(1000);
             
-            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName) // Если это наш тестовый ученик
+            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(1)")).Text == testLastName) // Если это наш тестовый ученик
             {
                 Dr.FindElement(By.CssSelector("tbody tr td:nth-child(4) a:nth-child(1)")).Click(); // Нажимаем Edit
                 Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys("Test" + Keys.Enter); // Изменяем поле Last Name                 
             }
            // Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + Keys.Enter); // Поиск по имени
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr td:nth-child(1)")).Text == (testLastName + "Test")); // Ищем фамилию на странице
             Dr.FindElement(By.CssSelector(".table a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
@@ -78,9 +78,9 @@ namespace proba
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
             Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
-            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName) // Если это наш тестовый ученик
+            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(1)")).Text == testLastName) // Если это наш тестовый ученик
             {
                 Dr.FindElement(By.CssSelector("tbody tr td:nth-child(4) a:nth-child(1)")).Click(); // Нажимаем Edit
 
@@ -134,11 +134,11 @@ namespace proba
             Dr.Navigate().GoToUrl("https://contoso-university-demo.azurewebsites.net/Students");
             Dr.FindElement(By.LinkText("Create New")).Click(); // Нажимаем создать нового ученика
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
-            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
+            Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName + "Add"); // Заполняем поле First Name           
             Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
             Thread.Sleep(1000);
 
-            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName) // Если это наш тестовый ученик   
+            if (Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text == testFirstName + "Add") // Если это наш тестовый ученик   
             {
                 Dr.FindElement(By.CssSelector("tbody tr td:nth-child(4) a:nth-child(3)")).Click(); // Нажимаем Delete
                 Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления 
@@ -152,7 +152,7 @@ namespace proba
             {
                 Boo = true;
             }
-            Assert.IsTrue((Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text != testFirstName) || Boo); // Или это не наш ученик или учеников больше нет
+            Assert.IsTrue((Dr.FindElement(By.CssSelector("tbody tr td:nth-child(2)")).Text != testFirstName + "Add") || Boo); // Или это не наш ученик или учеников больше нет
             Dr.Quit();
         }
     }

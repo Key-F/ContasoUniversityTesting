@@ -9,8 +9,8 @@ namespace proba
     [TestClass]
     public class StudentSearch
     {
-        string testFirstName = "TestFirst";
-        string testLastName = "TestLast";
+        string testFirstName = "TestFirstName";
+        string testLastName = "TestLastName";
         string testDate = "1-11-2018"; // M-d-yyyy
 
         [TestMethod]
@@ -24,10 +24,10 @@ namespace proba
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
             Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             //Dr.FindElement(By.CssSelector(".col-md-offset-2.col-md-10 input")).Click(); // Нажимаем "Create"
             Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + Keys.Enter); // Поиск по имени
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Assert.IsTrue(Dr.FindElement(By.CssSelector("tbody tr td:nth-child(1)")).Text == testLastName); // Ищем созданную фамилию на странице
             Dr.FindElement(By.CssSelector(".table a:nth-child(3)")).Click(); // Чистим за собой
             Dr.FindElement(By.CssSelector("input.btn.btn-default")).Click(); // Подтверждение удаления            
@@ -45,7 +45,7 @@ namespace proba
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(2) input")).SendKeys(testLastName); // Заполняем поле Last Name
             Dr.FindElement(By.CssSelector(".form-horizontal div:nth-child(4) input")).SendKeys(testFirstName); // Заполняем поле First Name           
             Dr.FindElement(By.CssSelector("input#EnrollmentDate.form-control")).SendKeys(testDate + Keys.Enter); // Заполняем поле Enrollment Date           
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             //Dr.FindElement(By.CssSelector(".col-md-offset-2.col-md-10 input")).Click(); // Нажимаем "Create"
             Dr.FindElement(By.Name("SearchString")).SendKeys(testFirstName + Keys.Enter); // Поиск по фамилии
             Thread.Sleep(1000);
